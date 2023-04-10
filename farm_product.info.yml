@@ -7,3 +7,4 @@ dependencies:
   - drupal:taxonomy
   - farm:asset
   - farm:farm_entity
+  - farm:quantity
