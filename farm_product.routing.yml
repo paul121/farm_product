@@ -1,0 +1,7 @@
+farm_product.add_product_type:
+  path: '/products/types/add'
+  defaults:
+    _form: \Drupal\farm_product\Form\ProductTypeForm
+    _title: 'Add Product Type'
+  requirements:
+    _permission: 'create product asset'
