@@ -1,0 +1,4 @@
+farm.products:
+  title: Products
+  parent: farm.base
+  route_name: view.product_types.page

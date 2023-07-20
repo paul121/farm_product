@@ -1,0 +1,17 @@
+farm_product.product_types_page:
+  base_route: view.product_types.page
+  route_name: view.product_types.page
+  title: 'Product Types'
+  weight: -5
+
+farm_product.products_page:
+  base_route: view.product_types.page
+  route_name: view.products.page
+  title: 'Products'
+  weight: 0
+
+farm_product.products_inventory:
+  base_route: view.product_types.page
+  route_name: view.product_inventory.page
+  title: 'Manage Inventory'
+  weight: 5

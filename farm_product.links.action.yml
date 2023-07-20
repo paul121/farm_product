@@ -1,0 +1,23 @@
+farm_product.add_product_type:
+  title: 'Add product type'
+  route_name: farm_product.add_product_type
+  appears_on:
+    - view.product_types.page
+  options:
+    attributes:
+      class:
+        - 'use-ajax'
+      data-dialog-type: 'modal'
+      data-dialog-options: '{"height": "auto", "width": "700px"}'
+
+farm_product.add_product:
+  title: 'Add product'
+  route_name: farm_product.add_product
+  appears_on:
+    - view.products.page
+  options:
+    attributes:
+      class:
+        - 'use-ajax'
+      data-dialog-type: 'modal'
+      data-dialog-options: '{"height": "auto", "width": "700px"}'
