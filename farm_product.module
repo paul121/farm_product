@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * @file
+ * Module file farm_product module.
+ */
+
+use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_entity_view_display_alter().
+ */
+function farm_product_entity_view_display_alter(EntityViewDisplayInterface $display, $context) {
+
+  // Only modify unsaved full view modes for taxonomy terms.
+  if ($context['entity_type'] != 'taxonomy_term' || !$display->isNew() || $display->getMode() != 'full') {
+    return;
+  }
+
+  $base_settings = [
+    'label' => 'inline',
+    'weight' => 8,
+  ];
+
+  switch ($context['bundle']) {
+
+    // Add package fields to unit terms.
+    case 'unit':
+      $display->setComponent('package_unit', $base_settings);
+      $display->setComponent('package_quantity', $base_settings + ['type' => 'fraction_decimal']);
+      break;
+
+    // Add packages field to product_type terms.
+    case 'product_type':
+      $display->setComponent('packages', $base_settings);
+  }
+}
+
+/**
+ * Implements hook_entity_form_display_alter().
+ */
+function farm_product_entity_form_display_alter(EntityFormDisplayInterface $form_display, array $context) {
+
+  // Only modify unsaved default form modes for taxonomy terms.
+  if ($context['entity_type'] != 'taxonomy_term' || $context['form_mode'] != 'default' || !$form_display->isNew()) {
+    return;
+  }
+
+  $base_settings = [
+    'weight' => 8,
+  ];
+
+  switch ($context['bundle']) {
+
+    // Add package fields to unit terms.
+    case 'unit':
+      $form_display->setComponent(
+        'package_unit',
+        $base_settings + [
+          'type' => 'inline_entity_form_complex',
+          'settings' => [
+            'form_mode' => 'default',
+            'override_labels' => TRUE,
+            'label_singular' => t('unit'),
+            'label_plural' => t('units'),
+            'allow_new' => TRUE,
+            'allow_existing' => TRUE,
+            'match_operator' => 'CONTAINS',
+          ],
+        ],
+      );
+      $form_display->setComponent('package_quantity', $base_settings + ['type' => 'fraction_decimal']);
+      break;
+
+    // Add packages field to product_type terms.
+    case 'product_type':
+      $form_display->setComponent(
+        'packages',
+        $base_settings + [
+          'type' => 'inline_entity_form_complex',
+          'settings' => [
+            'form_mode' => 'default',
+            'override_labels' => TRUE,
+            'label_singular' => t('unit'),
+            'label_plural' => t('units'),
+            'allow_new' => TRUE,
+            'allow_existing' => TRUE,
+            'match_operator' => 'CONTAINS',
+          ],
+        ]
+      );
+  }
+}
