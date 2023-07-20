@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.packages
+    - taxonomy.vocabulary.product_type
+    - taxonomy.vocabulary.unit
+  module:
+    - entity_reference_validators
+third_party_settings:
+  entity_reference_validators:
+    circular_reference: false
+    circular_reference_deep: false
+    duplicate_reference: false
+id: taxonomy_term.product_type.packages
+field_name: packages
+entity_type: taxonomy_term
+bundle: product_type
+label: 'Packages'
+description: 'Select the package units used to manage or distribute this product.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      unit: unit
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
