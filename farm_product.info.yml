@@ -8,4 +8,5 @@ dependencies:
   - farm:asset
   - farm:farm_entity
   - farm:quantity
+  - farm:farm_inventory
   - inline_entity_form:inline_entity_form

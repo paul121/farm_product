@@ -25,3 +25,16 @@ farm_product.add_product_from_type:
         type: entity:taxonomy_term
         bundle:
           - product_type
+farm_product.product_manage_inventory:
+  path: products/inventory/manage/{product}
+  defaults:
+    _form: \Drupal\farm_product\Form\ProductInventoryForm
+    _title: 'Manage Inventory'
+  requirements:
+    _permission: 'create activity log'
+  options:
+    parameters:
+      product:
+        type: entity:asset
+        bundle:
+          - product
