@@ -5,3 +5,23 @@ farm_product.add_product_type:
     _title: 'Add Product Type'
   requirements:
     _permission: 'create product asset'
+farm_product.add_product:
+  path: '/products/add'
+  defaults:
+    _form: \Drupal\farm_product\Form\ProductForm
+    _title: 'Add Product'
+  requirements:
+    _permission: 'create product asset'
+farm_product.add_product_from_type:
+  path: '/products/{product_type}/add'
+  defaults:
+    _form: \Drupal\farm_product\Form\ProductForm
+    _title: 'Add Product'
+  requirements:
+    _permission: 'create product asset'
+  options:
+    parameters:
+      product_type:
+        type: entity:taxonomy_term
+        bundle:
+          - product_type
