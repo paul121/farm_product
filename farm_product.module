@@ -7,6 +7,43 @@
 
 use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_entity_operation().
+ */
+function farm_product_entity_operation(EntityInterface $entity) {
+  $operations = [];
+
+  if ($entity->getEntityTypeId() === 'taxonomy_term' && $entity->bundle() == 'product_type') {
+    $operations['manage_inventory'] = [
+      'title' => t('Manage Inventory'),
+      'url' => Url::fromRoute('view.product_inventory.page', ['product_type_target_id' => "{$entity->label()} ({$entity->id()})"]),
+      'weight' => -5,
+    ];
+    $operations['view_products'] = [
+      'title' => t('Manage Products'),
+      'url' => Url::fromRoute('view.products.page', ['product_type_target_id' => "{$entity->label()} ({$entity->id()})"]),
+      'weight' => 5,
+    ];
+  }
+
+  if ($entity->getEntityTypeId() === 'asset' && $entity->bundle() == 'product') {
+    $operations['manage_inventory'] = [
+      'title' => t('Manage Inventory'),
+      'url' => Url::fromRoute('view.product_inventory.page_asset', ['asset' => $entity->id()], ['query' => ['inventory_asset' => $entity->label()]]),
+      'weight' => -5,
+    ];
+    $operations['transfer_inventory'] = [
+      'title' => t('Transfer Inventory (todo)'),
+      'url' => Url::fromUri('internal:/products'),
+      'weight' => -5,
+    ];
+  }
+
+  return $operations;
+}
 
 /**
  * Implements hook_entity_view_display_alter().
