@@ -38,3 +38,15 @@ farm_product.product_manage_inventory:
         type: entity:asset
         bundle:
           - product
+farm_product.product_type_setup:
+  path: setup/products/product_types
+  defaults:
+    _form: \Drupal\farm_product\Form\ProductTypeSetupForm
+  requirements:
+    _permission: 'create activity log'
+farm_product.product_location_setup:
+  path: setup/products/product_locations
+  defaults:
+    _form: \Drupal\farm_product\Form\ProductLocationSetupForm
+  requirements:
+    _permission: 'create activity log'

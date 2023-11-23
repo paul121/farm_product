@@ -3,6 +3,7 @@ farm_product.add_product_type:
   route_name: farm_product.add_product_type
   appears_on:
     - view.product_types.page
+    - farm_product.product_type_setup
   options:
     attributes:
       class:

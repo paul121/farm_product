@@ -2,3 +2,9 @@ farm.products:
   title: Products
   parent: farm.base
   route_name: view.product_types.page
+
+farm.product_types:
+  title: Products
+  description: Manage product inventory with product types and inventory locations.
+  parent: farm.setup
+  route_name: farm_product.product_location_setup

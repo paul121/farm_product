@@ -10,8 +10,33 @@ farm_product.products_page:
   title: 'Products'
   weight: 0
 
+farm_product.products_page.location:
+  parent_id: farm_product.products_page
+  route_name: view.products.page_location
+  title: 'By location'
+  weight: 0
+
+farm_product.products_page.type:
+  parent_id: farm_product.products_page
+  route_name: view.products.page
+  title: 'By type'
+  weight: 0
+
 farm_product.products_inventory:
   base_route: view.product_types.page
   route_name: view.product_inventory.page
   title: 'Manage Inventory'
   weight: 5
+
+farm_product.product_location_setup:
+  base_route: farm_product.product_location_setup
+  route_name: farm_product.product_location_setup
+  title: 'Product Locations'
+  weight: 0
+
+farm_product.product_type_setup:
+  base_route: farm_product.product_location_setup
+  route_name: farm_product.product_type_setup
+  title: 'Product Types'
+  weight: 0
+

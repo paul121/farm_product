@@ -91,7 +91,7 @@ class ProductTypeForm extends FormBase {
     foreach ($fields as $field_name => $options) {
       $product_display->setComponent($field_name, $options);
     }
-    $product_display->buildForm($product, $form['product'], $product_subform);
+    #$product_display->buildForm($product, $form['product'], $product_subform);
 
     $form['actions'] = [
       '#type' => 'actions',

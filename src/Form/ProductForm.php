@@ -24,10 +24,26 @@ class ProductForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, TermInterface $product_type = NULL) {
 
+    $form['location'] = [
+      '#type' => 'entity_autocomplete',
+      '#title' => $this->t('Location'),
+      '#target_type' => 'asset',
+      '#selection_handler' => 'views',
+      '#selection_settings' => [
+        'view' => [
+          'view_name' => 'farm_location_reference',
+          'display_name' => 'entity_reference',
+        ],
+      ],
+      '#tags' => FALSE,
+      '#size' => 15,
+    ];
+
     $form['product_type'] = [
       '#type' => 'entity_autocomplete',
       '#title' => $this->t('Product type'),
       '#default_value' => $product_type,
+      '#required' => TRUE,
       '#target_type' => 'taxonomy_term',
       '#selection_handler' => 'default',
       '#selection_settings' => [
@@ -41,6 +57,7 @@ class ProductForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Name'),
       '#description' => $this->t('The name of the product.'),
+      '#required' => TRUE,
     ];
 
     $form['notes'] = [
@@ -70,6 +87,7 @@ class ProductForm extends FormBase {
       'name' => $form_state->getValue('name'),
       'product_type' => $form_state->getValue('product_type'),
       'notes' => $form_state->getValue('notes'),
+      'parent' => $form_state->getValue('location'),
     ]);
     $product->save();
 

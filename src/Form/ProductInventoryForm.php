@@ -185,12 +185,15 @@ class ProductInventoryForm extends FormBase {
 
     // Create the quantity inventory adjustment.
     $adjustment = $form_state->getValue('adjustment');
-    $quantity = Quantity::create(
-      array_filter($form_state->getValue('quantity')) + [
-        'inventory_asset' => $product,
-        'inventory_adjustment' => $form_state->getValue('adjustment'),
-      ]
-    );
+    $quantity = $form_state->getValue('quantity');
+    $quantity->set('inventory_asset', $product);
+    $quantity->set('inventory_adjustment', $form_state->getValue('adjustment'));
+//    $quantity = Quantity::create(
+//      array_filter($form_state->getValue('quantity')) + [
+//        'inventory_asset' => $product,
+//        'inventory_adjustment' => $form_state->getValue('adjustment'),
+//      ]
+//    );
 
     // Create the activity log.
     $log = Log::create([
